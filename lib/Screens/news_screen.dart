@@ -4,6 +4,8 @@ import 'package:untitled/Providers/news_provider.dart';
 import 'package:untitled/Widgets/custom_card.dart';
 import 'package:untitled/Widgets/custom_textformfeild.dart';
 
+import 'category_screen.dart';
+
 class NewsScreen extends StatelessWidget {
   NewsScreen({super.key});
 
@@ -12,6 +14,11 @@ class NewsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+          child:  Icon(Icons.home),
+          onPressed: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context) => CategoryScreen(),));
+          }),
       body: Card(
         shadowColor: Colors.black,
         elevation: 2.4,
@@ -47,17 +54,19 @@ class NewsScreen extends StatelessWidget {
                    else
                      {
                        provider.getData(searchController.text);
-                       return ListView.separated(
-                         itemCount: data.length,
-                         separatorBuilder: (context, index) => const SizedBox(height: 5),
-                         itemBuilder: (context, index) {
-                           return CustomCard(
-                             index: index,
-                             name: data[index]['source']['name'],
-                             image: data[index]['urlToImage'],
-                             title: data[index]['title'],
-                           );
-                         },
+                       return Flexible(
+                         child: ListView.separated(
+                           itemCount: data.length,
+                           separatorBuilder: (context, index) => const SizedBox(height: 5),
+                           itemBuilder: (context, index) {
+                             return CustomCard(
+                               index: index,
+                               name: data[index]['source']['name'].toString(),
+                               image: data[index]['urlToImage'].toString(),
+                               title: data[index]['title'].toString(),
+                             );
+                           },
+                         ),
                        );
                      }
 

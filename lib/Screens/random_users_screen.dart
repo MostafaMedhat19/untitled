@@ -64,15 +64,27 @@ class RandomUsersScreen extends StatelessWidget {
 
                   return  GestureDetector(
                     onTap: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>CustomUserDetails( description : data[index]['timezone']['description'],name: data[index]['name']['first'], image: data[index]['picture']['large'] )));
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>CustomUserDetails(
+                          email:"${data[index]['email']}" ,
+                          address : "${data[index]['location']['street']['number']} / ${data[index]['location']['street']['name']},",
+                          name: "${data[index]['name']['first'] } , ${ data[index]['name']['last']}",
+                          image: data[index]['picture']['large'] )));
                     },
-                    child: CustomField(
-                      address: data[index]['location']['street']['name'],
-                      image: data[index]['picture']['large'] ,
-                      name:data[index]['name']['first'] ,),
+                    child: Card(
+                      shadowColor: Colors.black,
+                      elevation: 3.4,
+                      surfaceTintColor: Colors.blueGrey,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: CustomField(
+                        address: "${data[index]['location']['street']['number']} / ${data[index]['location']['street']['name']}",
+                        image: data[index]['picture']['large'] ,
+                        name: data[index]['email'] ,),
+                    ),
                   );
                 },
-                separatorBuilder: (context, index) => const Divider(),
+                separatorBuilder: (context, index) => const SizedBox(),
                 itemCount: data.length)) ,
           );
         }

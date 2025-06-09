@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:untitled/Screens/product_screen.dart';
 import 'package:untitled/Screens/random_users_screen.dart';
 import 'package:untitled/Screens/search_screen.dart';
 import 'package:untitled/Widgets/custom_box.dart';
@@ -11,36 +12,42 @@ class CategoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       appBar: AppBar(
         title: const Text('Categories'),
       ),
-      body: ListView.separated(
+      body: GridView.builder(
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+
         itemCount: 4,
-        separatorBuilder: (context, index) => const Divider(),
+
 
         itemBuilder: (context, index) {
-          return GestureDetector(
-            onTap: () {
-               if(index ==0)
-                 {
-                   Navigator.push(context, MaterialPageRoute(builder: (context)=> NewsScreen()));
-                 }
-               else if(index ==1)
-                 {
-                   Navigator.push(context, MaterialPageRoute(builder: (context)=> RandomUsersScreen()));
-                 }
-               else if(index ==2)
-                 {
-                   Navigator.push(context, MaterialPageRoute(builder: (context)=> SearchScreen()));
-                 }
-               else
-                 {
-                   return null ;
-                 }
-            },
-            child: CustomBox(
-              icons: _getIconForIndex(index),
-               content: _getTitleForIndex(index),
+          return Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: GestureDetector(
+              onTap: () {
+                 if(index ==0)
+                   {
+                     Navigator.push(context, MaterialPageRoute(builder: (context)=> NewsScreen()));
+                   }
+                 else if(index ==1)
+                   {
+                     Navigator.push(context, MaterialPageRoute(builder: (context)=> RandomUsersScreen()));
+                   }
+                 else if(index ==2)
+                   {
+                     Navigator.push(context, MaterialPageRoute(builder: (context)=> SearchScreen()));
+                   }
+                 else if(index == 3)
+                   {
+                     Navigator.push(context, MaterialPageRoute(builder: (context)=> ProductScreen()));
+                   }
+              },
+              child: CustomBox(
+                icons: _getIconForIndex(index),
+                 content: _getTitleForIndex(index),
+              ),
             ),
           );
         },

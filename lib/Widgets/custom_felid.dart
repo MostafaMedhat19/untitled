@@ -15,22 +15,20 @@ class CustomField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: Column(
-       crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          CircleAvatar( radius: 30 , backgroundImage: NetworkImage(image),),
-          const SizedBox(height: 8),
-          Row(
+    return Column(
+     crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        CircleAvatar( radius: 30 , backgroundImage: NetworkImage(image),),
+        const SizedBox(height: 8),
+        Row(
 
-            children: [
-              Text(name, style: const TextStyle(fontWeight: FontWeight.bold)),
-              const SizedBox(width: 8),
-              Text(address),
-            ],
-          ),
-        ],
-      ),
+          children: [
+            Text(name, style: const TextStyle(fontWeight: FontWeight.bold)),
+            const SizedBox(width: 8),
+            Text(address),
+          ],
+        ),
+      ],
     );
   }
 }

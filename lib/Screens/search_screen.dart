@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:untitled/Screens/weather_screen.dart';
 import 'package:untitled/Widgets/custom_textformfeild.dart';
 
+import 'category_screen.dart';
+
 class SearchScreen extends StatelessWidget {
   SearchScreen({super.key});
   final TextEditingController searchController = TextEditingController();
@@ -10,6 +12,11 @@ class SearchScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+          child:  Icon(Icons.home),
+          onPressed: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context) => CategoryScreen(),));
+          }),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(16.0),

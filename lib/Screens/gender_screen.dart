@@ -32,7 +32,8 @@ class GenderScreen extends StatelessWidget {
           return Scaffold(
              floatingActionButton: FloatingActionButton(
                onPressed: () => Navigator.pop(context),
-               child: Icon(Icons.arrow_back), // optional
+               child: Icon(Icons.arrow_back),
+               // optional
              ),
             body: Expanded(
 
@@ -41,12 +42,16 @@ class GenderScreen extends StatelessWidget {
 
                       return  GestureDetector(
                         onTap: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (context)=>CustomUserDetails( description : data[index]['timezone']['description'],name: data[index]['name']['first'], image: data[index]['picture']['large'] )));
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=>CustomUserDetails(
+                              email:"${data[index]['email']}" ,
+                              address : "${data[index]['location']['street']['number']} / ${data[index]['location']['street']['name']},",
+                              name: "${data[index]['name']['first'] } , ${ data[index]['name']['last']}",
+                              image: data[index]['picture']['large'] )));
                         },
                         child: CustomField(
                           address: data[index]['location']['street']['name'],
                           image: data[index]['picture']['large'] ,
-                          name:data[index]['name']['first'] ,),
+                          name: data[index]['email'],),
                       );
                     },
                     separatorBuilder: (context, index) => const Divider(),
